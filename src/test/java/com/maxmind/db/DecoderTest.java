@@ -9,6 +9,7 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -489,7 +490,7 @@ public class DecoderTest {
      * Java 6 compatible
      */
     private static FileChannel getFileChannel(byte[] data) throws IOException {
-        File file = File.createTempFile(UUID.randomUUID().toString(), "tmp");
+        File file = Files.createTempFile(UUID.randomUUID().toString(), "tmp").toFile();
         file.deleteOnExit();
         RandomAccessFile raf = new RandomAccessFile(file, "rw");
         FileChannel fc = raf.getChannel();
